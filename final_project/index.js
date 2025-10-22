@@ -20,6 +20,11 @@ app.use("/customer/auth/*", function auth(req, res, next) {
         return res.status(401).json({ message: "Unauthorized access" });
     }
 });
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
  
 const PORT =5000;
 
